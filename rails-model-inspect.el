@@ -3,7 +3,7 @@
 ;; Author: Vincent
 ;; Version: 0.1.0
 ;; Keywords: rails, ruby
-;; URL: https://github.com/vlagorsse/rails-model-inspect
+;; URL: https://github.com/vlagorsse/emacs-rails-model-inspect
 ;; Package-Requires: ((emacs "27.1"))
 
 ;;; Commentary:
