@@ -17,7 +17,7 @@ Rails.application.eager_load!
 model = '%s'.constantize
 puts \"== \#{model.name} ==\"
 begin
-  model.columns.each do |col|
+  model.columns.sort_by(&:name).each do |col|
     line = \"  %%-30s %%-20s\" %% [col.name, col.sql_type]
     line += ' NOT NULL'                unless col.null
     line += \" DEFAULT=\#{col.default}\" if col.default
@@ -29,7 +29,7 @@ end
 assocs = model.reflect_on_all_associations
 unless assocs.empty?
   puts \"  Associations:\"
-  assocs.each { |a| puts \"    \#{a.macro} :\#{a.name}\" }
+  assocs.sort_by(&:name).each { |a| puts \"    \#{a.macro} :\#{a.name}\" }
 end
 vals = model.validators
 unless vals.empty?
@@ -41,7 +41,7 @@ unless vals.empty?
 end
 if model.defined_enums.any?
   puts \"  Enums:\"
-  model.defined_enums.each { |name, values| puts \"    \#{name}: \#{values.keys.join(', ')}\" }
+  model.defined_enums.sort.each { |name, values| puts \"    \#{name}: \#{values.keys.join(', ')}\" }
 end")
 
 (defun rails-model-inspect--find-root ()
